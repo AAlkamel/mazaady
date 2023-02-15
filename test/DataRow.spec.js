@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils'
-import NuxtLogo from '@/components/NuxtLogo.vue'
+import DataRow from '@/components/DataRow.vue'
 
-describe('NuxtLogo', () => {
+describe('DataRow', () => {
   test('is a Vue instance', () => {
-    const wrapper = mount(NuxtLogo)
+    const wrapper = mount(DataRow)
     expect(wrapper.vm).toBeTruthy()
   })
 })
