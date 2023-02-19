@@ -26,7 +26,8 @@
         aria-haspopup="true"
       >
         {{selected}}
-        <fa class=" text-xs -ml-1 mr-2 h-5 w-5" icon="chevron-down" />
+        <i class=" text-xs -ml-1 mr-2 h-5 w-5 fa-solid fa-chevron-down"></i>
+        <!-- <fa class=" text-xs -ml-1 mr-2 h-5 w-5" icon="chevron-down" /> -->
       </button>
     </div>
     <ul

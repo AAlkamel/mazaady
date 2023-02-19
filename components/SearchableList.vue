@@ -190,7 +190,7 @@ export default {
     },
     arr: {
       type: Array,
-      default: [],
+      required:true
     },
   },
   data() {
