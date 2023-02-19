@@ -20,7 +20,7 @@
     </label>
     <div
       v-click-outside="hide"
-      @focusin="showCategories = true"
+      @focusin="handleCategoryFocus "
       class="relative mt-1 mb-5"
     >
       <button
@@ -162,7 +162,7 @@
     </label>
     <div
       v-click-outside="subHide"
-      @focusin="showSubCategories = true"
+      @focusin="handleSubCategoryFocus"
       class="relative mt-1 mb-5"
     >
       <button
@@ -410,22 +410,38 @@ export default {
     },
   },
   methods: {
+    handleCategoryFocus(){
+      this.search = ""
+      this.showCategories = true
+    },
+    handleSubCategoryFocus(){
+      this.showSubCategories = true
+      this.subSearch = ""
+    },
     hide() {
       this.showCategories = false;
+      this.search = this.selected? this.selected.name :''
     },
     subHide() {
       this.showSubCategories = false;
+      this.subSearch = this.subSelected? this.subSelected.name :''
     },
     select(index) {
       this.showCategories = false;
       this.selected = this.filteredCategories[index];
       this.search = this.filteredCategories[index].name;
+      this.child =[]
+      this.properties = []
+      this.subSelected = null
+      this.subSearch = ''
     },
     subSelect(index) {
       this.showSubCategories = false;
       this.subSelected = this.filteredSubCategories[index];
       const id = this.subSelected.id;
       this.subSearch = this.filteredSubCategories[index].name;
+      this.child =[]
+      this.properties = []
       this.$axios.$get("api/properties?cat=" + id).then((res) => {
         this.properties = res.data;
         console.log(res.data, "sub select");

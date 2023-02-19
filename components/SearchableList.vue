@@ -5,7 +5,7 @@
     </label>
     <div
       v-click-outside="hide"
-      @focusin="show = true"
+      @focusin="handleFocus"
       class="relative mt-1 mb-5"
     >
       <button
@@ -205,12 +205,19 @@ export default {
   },
 
   methods: {
+    handleFocus(){
+      this.show = true
+      this.search = ""
+    },
     hide() {
       this.show = false;
+      this.search = this.selected? this.selected.name :''
     },
     select(index) {
       this.show = false;
       this.selected = this.filteredArr[index];
+      this.localData.child = []
+      this.childProperties = []
       if (this.selected.child) {
         const that = this
         this.$axios.$get("api/get-options-child/" + this.selected.id).then((res) => {
