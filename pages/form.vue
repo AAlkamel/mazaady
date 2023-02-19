@@ -20,7 +20,7 @@
     </label>
     <div
       v-click-outside="hide"
-      @focusin="handleCategoryFocus "
+
       class="relative mt-1 mb-5"
     >
       <button
@@ -33,6 +33,7 @@
         <span class="flex items-center">
           <input
             v-model="search"
+            @focusin="handleCategoryFocus "
             class="
               relative
               w-full
@@ -106,7 +107,7 @@
         aria-activedescendant="listbox-option-3"
       >
         <li
-          @click="select(index)"
+          @click.stop="select(item.id)"
           v-for="(item, index) in filteredCategories"
           :key="item.id * index"
           class="
@@ -162,7 +163,7 @@
     </label>
     <div
       v-click-outside="subHide"
-      @focusin="handleSubCategoryFocus"
+
       class="relative mt-1 mb-5"
     >
       <button
@@ -175,6 +176,7 @@
         <span class="flex items-center">
           <input
             v-model="subSearch"
+            @focusin="handleSubCategoryFocus"
             class="
               relative
               w-full
@@ -411,8 +413,8 @@ export default {
   },
   methods: {
     handleCategoryFocus(){
-      this.search = ""
       this.showCategories = true
+      this.search = ""
     },
     handleSubCategoryFocus(){
       this.showSubCategories = true
@@ -426,10 +428,14 @@ export default {
       this.showSubCategories = false;
       this.subSearch = this.subSelected? this.subSelected.name :''
     },
-    select(index) {
+    select(id) {
+      console.log(id);
       this.showCategories = false;
-      this.selected = this.filteredCategories[index];
-      this.search = this.filteredCategories[index].name;
+      this.selected =
+      this.categories.filter((category) =>
+        category.id == id
+      )[0];
+      this.search = this.selected.name;
       this.child =[]
       this.properties = []
       this.subSelected = null

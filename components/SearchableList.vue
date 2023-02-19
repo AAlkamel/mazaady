@@ -5,7 +5,7 @@
     </label>
     <div
       v-click-outside="hide"
-      @focusin="handleFocus"
+
       class="relative mt-1 mb-5"
     >
       <button
@@ -18,6 +18,7 @@
         <span class="flex items-center">
           <input
             v-model="search"
+            @focusin="handleFocus"
             class="
               relative
               w-full
