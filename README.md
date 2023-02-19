@@ -1,4 +1,4 @@
-# maza
+# mazaady
 
 ## Build Setup
 
